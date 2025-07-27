@@ -1,6 +1,7 @@
-import { Page, Locator } from '@playwright/test';
+import { Page, Locator, expect } from '@playwright/test';
 
 export class SidebarPage {
+
   readonly page: Page;
   readonly fullName: Locator;
   readonly username: Locator;
@@ -21,6 +22,15 @@ export class SidebarPage {
     this.bankAccountsLink = page.getByRole('link', { name: 'Bank Accounts' });
     this.notificationsLink = page.getByRole('link', { name: 'Notifications' });
     this.logoutButton = page.getByRole('button', { name: 'Logout' });
+  }
+
+  async isHomeDisplayed() {
+    try {
+      await expect(this.homeLink).toBeVisible({ timeout: 5000 });
+      return true;
+    } catch (e) {
+      throw new Error('Sidebar Home link was not visible within 5 seconds');
+    }
   }
 
   async gotoHome() {
@@ -55,3 +65,4 @@ export class SidebarPage {
     return (await this.balance.textContent()) ?? '';
   }
 }
+
