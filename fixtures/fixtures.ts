@@ -4,17 +4,11 @@ import { SidebarPage } from '../pages/SidebarPage';
 
 // Define custom fixtures
 interface Fixtures {
-  page: Page;
   loginPage: LoginPage;
   sidebarPage: SidebarPage;
 }
 
 const test = base.extend<Fixtures>({
-  page: async ({ context }, use) => {
-    const page = await context.newPage();
-    await use(page);
-    await page.close();
-  },
   loginPage: async ({ page }, use) => {
     const loginPage = new LoginPage(page);
     await loginPage.goto();
