@@ -8,7 +8,7 @@ import { test, expect } from '../fixtures/fixtures';
 //   d. Must update user profile and reflect changes in UI.
 
 test.describe('User Settings Management', () => {
-    test.beforeEach(async ({ loginPage, sidebarPage, userSettingsPage }) => {
+    test.beforeEach(async ({ loginPage, sidebarPage }) => {
         // Navigate to User Settings page
         await loginPage.enterLoginDetails('Heath93', 's3cret');
         await loginPage.clickSubmit();
