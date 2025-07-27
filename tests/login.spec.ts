@@ -17,16 +17,15 @@ test.describe('Login Page', () => {
   test('should show error with invalid credentials', async ({ loginPage, page }) => {
     await loginPage.enterLoginDetails(INVALID_USERNAME, INVALID_PASSWORD);
     await loginPage.clickSubmit();
-    await expect(loginPage.errorMessage).toBeVisible();
-    const errorText = await loginPage.getErrorMessage();
-    expect(errorText).toBe('Username or password is invalid');
+    expect(await loginPage.getErrorMessage())
+      .toBe('Username or password is invalid');
   });
 
   test('should show validation errors with empty fields', async ({ loginPage, page }) => {
     await loginPage.enterLoginDetails('', '');
     await expect(loginPage.usernameRequiredError).toBeVisible();
-    const errorText = await loginPage.getUsernameRequiredError();
-    expect(errorText).toBe('Username is required');
+    expect(await loginPage.getUsernameRequiredError())
+      .toBe('Username is required');
   });
 
   test('should allow checking the Remember me checkbox', async ({ loginPage }) => {
