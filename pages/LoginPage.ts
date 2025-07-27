@@ -18,7 +18,7 @@ export class LoginPage {
   }
 
   async goto() {
-    await this.page.goto('/login'); // Update path if needed
+    await this.page.goto('/signin'); // Update path if needed
   }
 
   async login(username: string, password: string, rememberMe: boolean = false) {
