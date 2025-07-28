@@ -29,6 +29,7 @@ test.describe('Login Page', () => {
   });
 
   test('should allow checking the Remember me checkbox', async ({ loginPage }) => {
+    await loginPage.enterLoginDetails(VALID_USERNAME, VALID_PASSWORD);
     await loginPage.rememberMeCheckbox.check();
     await expect(loginPage.rememberMeCheckbox).toBeChecked();
   });
