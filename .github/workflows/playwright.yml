@@ -30,7 +30,7 @@ jobs:
       - name: Install and start AUT
         working-directory: ./aut
         run: |
-          npm install
+          npm install --legacy-peer-deps
           npm run start &
 
       # Wait for AUT to be ready (adjust the URL and timeout as needed)
