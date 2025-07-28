@@ -27,11 +27,13 @@ jobs:
           node-version: '20'
 
       # Install and start the AUT
-      - name: Install and start AUT
+      - name: Install dependencies
         working-directory: ./aut
-        run: |
-          npm install --legacy-peer-deps
-          npm run start &
+        run: yarn
+      
+      - name: Start AUT
+        working-directory: ./aut
+        run: yarn dev &
 
       # Wait for AUT to be ready (adjust the URL and timeout as needed)
       - name: Wait for AUT to be ready
