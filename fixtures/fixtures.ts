@@ -2,11 +2,18 @@ import { test as base, expect, Page } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage';
 import { SidebarPage } from '../pages/SidebarPage';
 import { UserSettingsPage } from '../pages/UserSettingsPage';
-interface Fixtures {
+import { BankAccountsPage } from '../pages/BankAccountsPage';
+import { CreateBankAccountPage } from '../pages/CreateBankAccountPage';
+import { BankAccountOnboardingDialogPage } from '../pages/BankAccountOnboardingDialogPage';
+
+type Fixtures = {
   loginPage: LoginPage;
   sidebarPage: SidebarPage;
   userSettingsPage: UserSettingsPage;
-}
+  bankAccountsPage: BankAccountsPage;
+  createBankAccountPage: CreateBankAccountPage;
+  bankAccountOnboardingDialogPage: BankAccountOnboardingDialogPage;
+};
 
 const test = base.extend<Fixtures>({
   loginPage: async ({ page }, use) => {
@@ -21,6 +28,18 @@ const test = base.extend<Fixtures>({
   userSettingsPage: async ({ page }, use) => {
     const userSettingsPage = new UserSettingsPage(page);
     await use(userSettingsPage);
+  },
+  bankAccountsPage: async ({ page }, use) => {
+    const bankAccountsPage = new BankAccountsPage(page);
+    await use(bankAccountsPage);
+  },
+  createBankAccountPage: async ({ page }, use) => {
+    const createBankAccountPage = new CreateBankAccountPage(page);
+    await use(createBankAccountPage);
+  },
+  bankAccountOnboardingDialogPage: async ({ page }, use) => {
+    const bankAccountOnboardingDialogPage = new BankAccountOnboardingDialogPage(page);
+    await use(bankAccountOnboardingDialogPage);
   },
 });
 
